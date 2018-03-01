@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-#SBATCH --job-name=emodel17_jester
-#SBATCH --output=eccv_model17_%j.log
-#SBATCH --error=eccv_model17_%j.log
+#SBATCH --job-name=large1_jester
+#SBATCH --output=eccv_large_model1_%j.log
+#SBATCH --error=eccv_large_model1_%j.log
 #
 #SBATCH --time=12:00:00
 #SBATCH --ntasks=1
@@ -46,7 +46,7 @@ date
 export DATA_ROOT=$TMPFS/20bn-jester
 
 echo 'running training script'
-$HOME/projects/vfeedbacknet/scripts/jemmons_train_20bn-jester.xs.sh 0,1,2,3 vfeedbacknet_eccv_model17 $WORK/vfeedbacknet-results/20bn/vfeedbacknet_eccv_model17.loss_uniform.xs --video_length=20 --video_height=112 --video_width=112 --video_downsample_ratio=2 --learning_rate_init=0.1 --learning_rate_decay=0.998 --learning_rate_min=0.001 --global_step_init 0 --train_batch_size=128 --prefetch_batch_size=1024 --validation_interval=16 --last_loss_multipler=1 --num_gpus=4 --num_cpus=5 --pretrain_root_prefix=$WORK/pretrained-models
+$HOME/projects/vfeedbacknet/scripts/jemmons_train_20bn-jester.xs.sh 0,1,2,3 vfeedbacknet_eccv_large_model1 $WORK/vfeedbacknet-results/20bn/vfeedbacknet_eccv_large_model1.loss_uniform.xs --video_length=20 --video_height=112 --video_width=112 --video_downsample_ratio=2 --learning_rate_init=0.1 --learning_rate_decay=0.998 --learning_rate_min=0.001 --global_step_init 0 --train_batch_size=128 --prefetch_batch_size=1024 --validation_interval=16 --last_loss_multipler=1 --num_gpus=4 --num_cpus=5 --pretrain_root_prefix=$WORK/pretrained-models
 
 date
 echo 'finshed.'
